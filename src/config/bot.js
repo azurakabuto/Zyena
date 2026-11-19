@@ -2,112 +2,112 @@ import { logger } from '../utils/logger.js';
 
 export const botConfig = {
   // =========================
-  // BOT PRESENCE (what users see under the bot name)
+  // KEHADIRAN / STATUS BOT (yang dilihat pengguna di bawah nama bot)
   // =========================
-  // `status` options:
-  // - "online"    = green dot
-  // - "idle"      = yellow moon
-  // - "dnd"       = red do-not-disturb
-  // - "invisible" = appears offline
+  // Opsi `status`:
+  // - "online"    = titik hijau
+  // - "idle"      = bulan kuning
+  // - "dnd"       = merah jangan ganggu (do-not-disturb)
+  // - "invisible" = terlihat offline
   presence: {
-    // Current online state shown on Discord.
+    // Status online saat ini yang ditampilkan di Discord.
     status: "online",
 
-    // Activity lines shown under the bot name.
-    // `type` number mapping from Discord:
-    // 0 = Playing
+    // Baris aktivitas yang ditampilkan di bawah nama bot.
+    // Pemetaan angka `type` dari Discord:
+    // 0 = Playing (Bermain)
     // 1 = Streaming
-    // 2 = Listening
-    // 3 = Watching
-    // 4 = Custom
-    // 5 = Competing
+    // 2 = Listening (Mendengarkan)
+    // 3 = Watching (Menonton)
+    // 4 = Custom (Kustom)
+    // 5 = Competing (Bertanding)
     activities: [
       {
-        name: "Custom Status", // required by Discord API, not shown in the client
-        state: "stalking",     // this is what people actually see
-        type: 4,               // Custom
+        name: "Custom Status", // wajib ada di Discord API, tidak tampil di klien
+        state: "stalking",     // ini yang benar-benar dilihat orang lain
+        type: 4,               // Kustom
       },
     ],
   },
 
   // =========================
-  // COMMAND BEHAVIOR
+  // PERILAKU COMMAND
   // =========================
   commands: {
-    // Bot owner user IDs (comma-separated in OWNER_IDS env var).
-    // Owners can access owner/admin-level bot commands.
+    // ID pengguna pemilik bot (dipisahkan koma di env var OWNER_IDS).
+    // Pemilik dapat mengakses command bot tingkat owner/admin.
     owners: process.env.OWNER_IDS?.split(",").map((id) => id.trim()).filter(Boolean) || [],
 
-    // Default wait time between command uses (in seconds).
+    // Waktu tunggu bawaan antar penggunaan command (dalam detik).
     defaultCooldown: 3,
 
-    // If true, old commands are removed before re-registering.
+    // Jika true, command lama dihapus sebelum didaftarkan ulang.
     deleteCommands: false,
 
-    // Optional server ID retained for tutorial compatibility; not used for command registration.
+    // ID server opsional untuk kompatibilitas tutorial; tidak dipakai untuk registrasi command.
     testGuildId: process.env.TEST_GUILD_ID,
 
-    // When true (or MAINTENANCE_MODE=true), only bot owners can run commands.
+    // Saat true (atau MAINTENANCE_MODE=true), hanya pemilik bot yang bisa menjalankan command.
     maintenanceMode: process.env.MAINTENANCE_MODE === "true",
 
-    // Command prefix for text-based commands (e.g., "!" for "!ping").
-    // Supports both slash commands and prefix commands.
+    // Prefix command untuk command berbasis teks (misalnya "!" untuk "!ping").
+    // Mendukung slash command maupun prefix command.
     prefix: process.env.PREFIX || "!",
   },
 
   // =========================
-  // APPLICATIONS SYSTEM
+  // SISTEM PENDAFTARAN / APLIKASI
   // =========================
   applications: {
-    // Default questions shown when someone fills out an application.
+    // Pertanyaan bawaan yang muncul saat seseorang mengisi formulir pendaftaran.
     defaultQuestions: [
-      { question: "What is your name?", required: true },
-      { question: "How old are you?", required: true },
-      { question: "Why do you want to join?", required: true },
+      { question: "Siapa nama kamu?", required: true },
+      { question: "Berapa umur kamu?", required: true },
+      { question: "Kenapa kamu ingin bergabung?", required: true },
     ],
 
-    // Embed colors by application status.
+    // Warna embed berdasarkan status pendaftaran.
     statusColors: {
       pending: "#FFA500",
       approved: "#00FF00",
       denied: "#FF0000",
     },
 
-    // How long users must wait before submitting another application (hours).
+    // Durasi tunggu sebelum pengguna bisa mengirim pendaftaran lagi (dalam jam).
     applicationCooldown: 24,
 
-    // Auto-delete denied applications after this many days.
+    // Hapus otomatis pendaftaran yang ditolak setelah sekian hari.
     deleteDeniedAfter: 7,
 
-    // Auto-delete approved applications after this many days.
+    // Hapus otomatis pendaftaran yang disetujui setelah sekian hari.
     deleteApprovedAfter: 30,
 
-    // Role IDs allowed to manage applications.
-    managerRoles: [], // Will be populated from environment or database
+    // Daftar ID role yang diizinkan mengelola pendaftaran.
+    managerRoles: [], // Akan diisi dari environment atau database
   },
 
   // =========================
-  // EMBED COLORS & BRANDING
+  // WARNA EMBED & BRANDING
   // =========================
-  // IMPORTANT: This is the SINGLE SOURCE OF TRUTH for all bot colors
+  // PENTING: Ini adalah SATU-SATUNYA SUMBER UTAMA untuk semua warna bot
   embeds: {
     colors: {
-      // Main brand colors.
+      // Warna utama brand.
       primary: "#336699",
       secondary: "#2F3136",
 
-      // Standard status colors for success/error/warning/info messages.
+      // Warna status standar untuk pesan sukses/error/peringatan/info.
       success: "#57F287",
       error: "#ED4245",
       warning: "#FEE75C",
       info: "#3498DB",
 
-      // Neutral utility colors.
+      // Warna utilitas netral.
       light: "#FFFFFF",
       dark: "#202225",
       gray: "#99AAB5",
 
-      // Discord-style palette shortcuts.
+      // Pintasan palet ala Discord.
       blurple: "#5865F2",
       green: "#57F287",
       yellow: "#FEE75C",
@@ -115,7 +115,7 @@ export const botConfig = {
       red: "#ED4245",
       black: "#000000",
 
-      // Feature-specific colors.
+      // Warna khusus per fitur.
       giveaway: {
         active: "#57F287",
         ended: "#ED4245",
@@ -130,7 +130,7 @@ export const botConfig = {
       birthday: "#E91E63",
       moderation: "#9B59B6",
 
-      // Ticket priority color mapping.
+      // Pemetaan warna prioritas tiket.
       priority: {
         none: "#95A5A6",
         low: "#3498db",
@@ -140,15 +140,15 @@ export const botConfig = {
       },
     },
     footer: {
-      // Default footer text used in bot embeds.
+      // Teks footer bawaan yang dipakai di embed bot.
       text: "Titan Bot",
-      // Footer icon URL (null = no icon).
+      // URL ikon footer (null = tanpa ikon).
       icon: null,
     },
-    // Default thumbnail URL for embeds (null = no thumbnail).
+    // URL thumbnail bawaan untuk embed (null = tanpa thumbnail).
     thumbnail: null,
     author: {
-      // Optional default embed author block.
+      // Blok author embed opsional bawaan.
       name: null,
       icon: null,
       url: null,
@@ -156,36 +156,36 @@ export const botConfig = {
   },
 
   // =========================
-  // ECONOMY SETTINGS
+  // PENGATURAN EKONOMI
   // =========================
   economy: {
     currency: {
-      // Currency display name.
-      name: "coins",
-      // Plural display name.
-      namePlural: "coins",
-      // Currency symbol shown in balances.
+      // Nama tampilan mata uang.
+      name: "koin",
+      // Nama tampilan bentuk jamak.
+      namePlural: "koin",
+      // Simbol mata uang yang ditampilkan pada saldo.
       symbol: "$",
     },
 
-    // Starting balance for new users.
+    // Saldo awal untuk pengguna baru.
     startingBalance: 0,
 
-    // Maximum bank amount before upgrades (if upgrades are used).
+    // Kapasitas maksimal bank sebelum di-upgrade (jika fitur upgrade dipakai).
     baseBankCapacity: 100000,
 
-    // Daily reward amount.
+    // Jumlah hadiah harian.
     dailyAmount: 100,
 
-    // Work command random payout range.
+    // Rentang bayaran acak command work.
     workMin: 10,
     workMax: 100,
 
-    // Beg command random payout range.
+    // Rentang bayaran acak command beg.
     begMin: 5,
     begMax: 50,
 
-    // Command cooldowns (milliseconds).
+    // Cooldown command (dalam milidetik).
     cooldowns: {
       daily: 24 * 60 * 60 * 1000,
       work: 60 * 60 * 1000,
@@ -193,237 +193,237 @@ export const botConfig = {
       rob: 4 * 60 * 60 * 1000,
     },
 
-    // Chance to succeed when robbing (0.4 = 40%).
+    // Peluang berhasil saat merampok/rob (0.4 = 40%).
     robSuccessRate: 0.4,
 
-    // Jail time after failed rob (milliseconds).
-    // 3600000 = 1 hour.
+    // Waktu penjara setelah gagal rob (dalam milidetik).
+    // 3600000 = 1 jam.
     robFailJailTime: 3600000,
   },
 
   // =========================
-  // SHOP SETTINGS
+  // PENGATURAN TOKO (SHOP)
   // =========================
-  // Add shop defaults here when needed.
+  // Tambahkan pengaturan bawaan toko di sini jika diperlukan.
   shop: {
 
   },
 
   // =========================
-  // TICKET SYSTEM
+  // SISTEM TIKET
   // =========================
   tickets: {
-    // Category ID where new tickets are created (null = no forced category).
+    // ID kategori tempat tiket baru dibuat (null = tanpa kategori paksaan).
     defaultCategory: null,
 
-    // Role IDs allowed to manage/support tickets.
+    // Daftar ID role yang diizinkan mengelola/menangani tiket.
     supportRoles: [],
 
-    // Priority options users/staff can assign.
+    // Opsi prioritas yang bisa ditetapkan pengguna/staf.
     priorities: {
       none: {
         emoji: "⚪",
         color: "#95A5A6",
-        label: "None",
+        label: "Tidak Ada",
       },
       low: {
         emoji: "🟢",
         color: "#2ECC71",
-        label: "Low",
+        label: "Rendah",
       },
       medium: {
         emoji: "🟡",
         color: "#F1C40F",
-        label: "Medium",
+        label: "Sedang",
       },
       high: {
         emoji: "🔴",
         color: "#E74C3C",
-        label: "High",
+        label: "Tinggi",
       },
       urgent: {
         emoji: "🚨",
         color: "#E91E63",
-        label: "Urgent",
+        label: "Mendesak",
       },
     },
 
-    // Default priority for new tickets.
+    // Prioritas bawaan untuk tiket baru.
     defaultPriority: "none",
 
-    // Category ID where closed tickets are archived.
+    // ID kategori tempat tiket yang ditutup diarsipkan.
     archiveCategory: null,
 
-    // Channel ID where ticket logs are sent.
+    // ID channel tempat log tiket dikirim.
     logChannel: null,
   },
 
   // =========================
-  // GIVEAWAY SETTINGS
+  // PENGATURAN GIVEAWAY
   // =========================
   giveaways: {
-    // Default giveaway duration in milliseconds.
-    // 86400000 = 24 hours.
+    // Durasi bawaan giveaway dalam milidetik.
+    // 86400000 = 24 jam.
     defaultDuration: 86400000,
 
-    // Allowed winner count range.
+    // Rentang jumlah pemenang yang diperbolehkan.
     minimumWinners: 1,
     maximumWinners: 10,
 
-    // Allowed giveaway duration range in milliseconds.
-    // 300000 = 5 minutes.
+    // Rentang durasi giveaway yang diperbolehkan dalam milidetik.
+    // 300000 = 5 menit.
     minimumDuration: 300000,
-    // 2592000000 = 30 days.
+    // 2592000000 = 30 hari.
     maximumDuration: 2592000000,
 
-    // Role IDs allowed to host giveaways.
+    // Daftar ID role yang diizinkan membuat giveaway.
     allowedRoles: [],
 
-    // Role IDs that bypass giveaway restrictions.
+    // Daftar ID role yang melewati pembatasan giveaway.
     bypassRoles: [],
   },
 
   // =========================
-  // BIRTHDAY SETTINGS
+  // PENGATURAN ULANG TAHUN
   // =========================
   birthday: {
-    // Role ID given to users on their birthday.
+    // ID role yang diberikan ke pengguna saat ulang tahun.
     defaultRole: null,
 
-    // Channel ID where birthday announcements are posted.
+    // ID channel tempat pengumuman ulang tahun dikirim.
     announcementChannel: null,
 
-    // Timezone used to calculate birthday dates.
+    // Zona waktu yang dipakai untuk menghitung tanggal ulang tahun.
     timezone: "UTC",
   },
 
   // =========================
-  // VERIFICATION SETTINGS
+  // PENGATURAN VERIFIKASI
   // =========================
   verification: {
-    // Message shown when posting the verification panel.
-    defaultMessage: "Click the button below to verify yourself and gain access to the server!",
+    // Pesan yang ditampilkan saat mengirim panel verifikasi.
+    defaultMessage: "Klik tombol di bawah ini untuk memverifikasi dirimu dan mendapatkan akses ke server!",
 
-    // Text on the verification button.
-    defaultButtonText: "Verify",
+    // Teks pada tombol verifikasi.
+    defaultButtonText: "Verifikasi",
 
-    // Automatic verification behavior.
+    // Perilaku verifikasi otomatis.
     autoVerify: {
-      // How automatic verification decides who is auto-approved:
-      // - "none"        = everyone is auto-verified immediately
-      // - "account_age" = account must be older than set days
-      // - "server_size" = auto-verify everyone only in smaller servers
+      // Cara verifikasi otomatis menentukan siapa yang langsung disetujui:
+      // - "none"        = semua orang langsung terverifikasi otomatis
+      // - "account_age" = umur akun harus lebih lama dari jumlah hari yang diatur
+      // - "server_size" = verifikasi otomatis semua orang hanya di server yang lebih kecil
       defaultCriteria: "none",
 
-      // Days used when `defaultCriteria` is `account_age`.
+      // Jumlah hari yang dipakai saat `defaultCriteria` bernilai `account_age`.
       defaultAccountAgeDays: 7,
 
-      // Member count threshold used when `defaultCriteria` is `server_size`.
-      // Example: 1000 means auto-verify if server has fewer than 1000 members.
+      // Batas jumlah member yang dipakai saat `defaultCriteria` bernilai `server_size`.
+      // Contoh: 1000 berarti verifikasi otomatis jika server memiliki kurang dari 1000 member.
       serverSizeThreshold: 1000,
 
-      // Allowed safety limits for account-age requirements.
-      // 1 = minimum day, 365 = maximum days.
+      // Batas aman yang diperbolehkan untuk syarat umur akun.
+      // 1 = minimal hari, 365 = maksimal hari.
       minAccountAge: 1,
       maxAccountAge: 365,
 
-      // If true, user receives a DM after verification.
+      // Jika true, pengguna menerima DM setelah verifikasi.
       sendDMNotification: true,
 
-      // Human-readable descriptions for each criteria mode.
+      // Deskripsi yang mudah dibaca untuk tiap mode kriteria.
       criteria: {
-        account_age: "Account must be older than specified days",
-        server_size: "All users if server has less than 1000 members",
-        none: "All users immediately"
+        account_age: "Akun harus lebih lama dari jumlah hari yang ditentukan",
+        server_size: "Semua pengguna jika server memiliki kurang dari 1000 member",
+        none: "Semua pengguna langsung"
       }
     },
 
-    // Minimum time between verification attempts (milliseconds).
-    // 5000 = 5 seconds.
+    // Jeda minimum antar percobaan verifikasi (dalam milidetik).
+    // 5000 = 5 detik.
     verificationCooldown: 5000,
 
-    // Maximum failed attempts allowed inside the time window below.
+    // Maksimal percobaan gagal yang diperbolehkan dalam rentang waktu di bawah.
     maxVerificationAttempts: 3,
 
-    // Time window for counting attempts (milliseconds).
-    // 60000 = 1 minute.
+    // Rentang waktu untuk menghitung percobaan (dalam milidetik).
+    // 60000 = 1 menit.
     attemptWindow: 60000,
 
-    // In-memory safety limits (helps avoid unbounded memory growth).
+    // Batas keamanan di memori (membantu mencegah pembengkakan memori tak terbatas).
     maxCooldownEntries: 10000,
     maxAttemptEntries: 10000,
-    // Cleanup frequency for cooldown/attempt maps (milliseconds).
-    // 300000 = 5 minutes.
+    // Frekuensi pembersihan map cooldown/percobaan (dalam milidetik).
+    // 300000 = 5 menit.
     cooldownCleanupInterval: 300000,
-    // Maximum metadata payload size for audit entries (bytes).
+    // Ukuran maksimal payload metadata untuk entri audit (dalam byte).
     maxAuditMetadataBytes: 4096,
-    // Maximum number of audit entries kept in memory.
+    // Jumlah maksimal entri audit yang disimpan di memori.
     maxInMemoryAuditEntries: 1000,
-    // If true, log every verification action.
+    // Jika true, catat setiap aksi verifikasi.
     logAllVerifications: true,
-    // If true, preserve verification audit history.
+    // Jika true, pertahankan riwayat audit verifikasi.
     keepAuditTrail: true,
   },
 
   // =========================
-  // WELCOME / GOODBYE MESSAGES
+  // PESAN SELAMAT DATANG / PERPISAHAN
   // =========================
   welcome: {
-    // Welcome template posted when a user joins.
-    // Placeholders: {user}, {server}, {memberCount}
+    // Template pesan selamat datang yang dikirim saat pengguna bergabung.
+    // Placeholder: {user}, {server}, {memberCount}
     defaultWelcomeMessage:
-      "Welcome {user} to {server}! We now have {memberCount} members!",
-    // Goodbye template posted when a user leaves.
-    // Placeholders: {user}, {memberCount}
+      "Selamat datang {user} di {server}! Sekarang kita memiliki {memberCount} anggota!",
+    // Template pesan perpisahan yang dikirim saat pengguna keluar.
+    // Placeholder: {user}, {memberCount}
     defaultGoodbyeMessage:
-      "{user} has left the server. We now have {memberCount} members.",
-    // Channel ID for welcome messages.
+      "{user} telah meninggalkan server. Sekarang kita memiliki {memberCount} anggota.",
+    // ID channel untuk pesan selamat datang.
     defaultWelcomeChannel: null,
-    // Channel ID for goodbye messages.
+    // ID channel untuk pesan perpisahan.
     defaultGoodbyeChannel: null,
   },
 
   // =========================
-  // COUNTER CHANNELS
+  // CHANNEL COUNTER
   // =========================
   counters: {
     defaults: {
-      // Default naming/description templates for counter entries.
-      name: "{name} Counter",
-      description: "Server {name} counter",
-      // Channel type used for counters (typically "voice").
+      // Template nama/deskripsi bawaan untuk entri counter.
+      name: "Counter {name}",
+      description: "Counter {name} server",
+      // Tipe channel yang dipakai untuk counter (umumnya "voice").
       type: "voice",
-      // Channel name format. `{count}` is replaced automatically.
+      // Format nama channel. `{count}` diganti secara otomatis.
       channelName: "{name}-{count}",
     },
     permissions: {
-      // Default denied permissions for the counter channel.
+      // Izin yang ditolak secara bawaan untuk channel counter.
       deny: ["VIEW_CHANNEL"],
-      // Default allowed permissions for the counter channel.
+      // Izin yang diizinkan secara bawaan untuk channel counter.
       allow: ["VIEW_CHANNEL", "CONNECT", "SPEAK"],
     },
     messages: {
-      // Default response messages for counter actions.
-      created: "✅ Created counter **{name}**",
-      deleted: "🗑️ Deleted counter **{name}**",
-      updated: "🔄 Updated counter **{name}**",
+      // Pesan balasan bawaan untuk aksi counter.
+      created: "✅ Counter **{name}** berhasil dibuat",
+      deleted: "🗑️ Counter **{name}** berhasil dihapus",
+      updated: "🔄 Counter **{name}** berhasil diperbarui",
     },
     types: {
-      // Built-in counter types and how each count is calculated.
+      // Tipe counter bawaan dan cara menghitung jumlahnya.
       members: {
-        name: "👥 Members",
-        description: "Total members in the server",
+        name: "👥 Anggota",
+        description: "Total anggota di server",
         getCount: (guild) => guild.memberCount.toString(),
       },
       bots: {
-        name: "🤖 Bots",
-        description: "Total bot accounts in the server",
+        name: "🤖 Bot",
+        description: "Total akun bot di server",
         getCount: (guild) =>
           guild.members.cache.filter((m) => m.user.bot).size.toString(),
       },
       members_only: {
-        name: "👤 Humans",
-        description: "Total human members (non-bots)",
+        name: "👤 Manusia",
+        description: "Total anggota manusia (bukan bot)",
         getCount: (guild) =>
           guild.members.cache.filter((m) => !m.user.bot).size.toString(),
       },
@@ -431,42 +431,42 @@ export const botConfig = {
   },
 
   // =========================
-  // GENERIC BOT MESSAGES
+  // PESAN UMUM BOT
   // =========================
   messages: {
-    noPermission: "You do not have permission to use this command.",
-    cooldownActive: "Please wait {time} before using this command again.",
-    errorOccurred: "An error occurred while executing this command.",
+    noPermission: "Kamu tidak memiliki izin untuk menggunakan command ini.",
+    cooldownActive: "Harap tunggu {time} sebelum menggunakan command ini lagi.",
+    errorOccurred: "Terjadi kesalahan saat menjalankan command ini.",
     missingPermissions:
-      "I am missing required permissions to perform this action.",
-    commandDisabled: "This command has been disabled.",
-    maintenanceMode: "The bot is currently in maintenance mode.",
+      "Saya kekurangan izin yang diperlukan untuk melakukan tindakan ini.",
+    commandDisabled: "Command ini telah dinonaktifkan.",
+    maintenanceMode: "Bot sedang dalam mode perawatan (maintenance).",
   },
 
   // =========================
-  // FEATURE TOGGLES
+  // SAKELAR FITUR
   // =========================
-  // Set any feature to `false` to disable it globally.
+  // Ubah fitur mana pun menjadi `false` untuk menonaktifkannya secara global.
   features: {
-    // Core systems.
+    // Sistem inti.
     economy: true,
     leveling: true,
     moderation: true,
     logging: true,
     welcome: true,
 
-    // Community engagement systems.
+    // Sistem keterlibatan komunitas.
     tickets: true,
     giveaways: true,
     birthday: true,
     counter: true,
 
-    // Security and self-service systems.
+    // Sistem keamanan dan layanan mandiri.
     verification: true,
     reactionRoles: true,
     joinToCreate: true,
 
-    // Utility/quality-of-life modules.
+    // Modul utilitas / kenyamanan.
     voice: true,
     search: true,
     tools: true,
@@ -481,37 +481,37 @@ export function validateConfig(config) {
   const errors = [];
 
   if (process.env.NODE_ENV !== 'production') {
-    logger.debug('Environment variables check:');
-    logger.debug('DISCORD_TOKEN exists:', !!process.env.DISCORD_TOKEN);
-    logger.debug('TOKEN exists:', !!process.env.TOKEN);
-    logger.debug('CLIENT_ID exists:', !!process.env.CLIENT_ID);
-    logger.debug('GUILD_ID exists:', !!process.env.GUILD_ID);
-    logger.debug('POSTGRES_HOST exists:', !!process.env.POSTGRES_HOST);
+    logger.debug('Pemeriksaan environment variables:');
+    logger.debug('DISCORD_TOKEN ada:', !!process.env.DISCORD_TOKEN);
+    logger.debug('TOKEN ada:', !!process.env.TOKEN);
+    logger.debug('CLIENT_ID ada:', !!process.env.CLIENT_ID);
+    logger.debug('GUILD_ID ada:', !!process.env.GUILD_ID);
+    logger.debug('POSTGRES_HOST ada:', !!process.env.POSTGRES_HOST);
     logger.debug('NODE_ENV:', process.env.NODE_ENV);
   }
 
   if (!process.env.DISCORD_TOKEN && !process.env.TOKEN) {
-    errors.push("Bot token is required (DISCORD_TOKEN or TOKEN environment variable)");
+    errors.push("Token bot wajib diisi (environment variable DISCORD_TOKEN atau TOKEN)");
   }
 
   if (!process.env.CLIENT_ID) {
-    errors.push("Client ID is required (CLIENT_ID environment variable)");
+    errors.push("Client ID wajib diisi (environment variable CLIENT_ID)");
   }
 
   if (process.env.NODE_ENV === 'production') {
-    // A full connection URL (DATABASE_URL / POSTGRES_URL) satisfies all Postgres
-    // requirements, matching how src/config/database/postgres.js resolves the pool config.
+    // URL koneksi penuh (DATABASE_URL / POSTGRES_URL) sudah memenuhi seluruh kebutuhan Postgres,
+    // sesuai cara src/config/database/postgres.js menyusun konfigurasi pool.
     const hasConnectionUrl = Boolean(process.env.POSTGRES_URL || process.env.DATABASE_URL);
 
     if (!hasConnectionUrl) {
       if (!process.env.POSTGRES_HOST) {
-        errors.push("PostgreSQL connection is required in production (set DATABASE_URL/POSTGRES_URL, or POSTGRES_HOST)");
+        errors.push("Koneksi PostgreSQL wajib ada di production (atur DATABASE_URL/POSTGRES_URL, atau POSTGRES_HOST)");
       }
       if (!process.env.POSTGRES_USER) {
-        errors.push("PostgreSQL user is required in production (set DATABASE_URL/POSTGRES_URL, or POSTGRES_USER)");
+        errors.push("User PostgreSQL wajib ada di production (atur DATABASE_URL/POSTGRES_URL, atau POSTGRES_USER)");
       }
       if (!process.env.POSTGRES_PASSWORD) {
-        errors.push("PostgreSQL password is required in production (set DATABASE_URL/POSTGRES_URL, or POSTGRES_PASSWORD)");
+        errors.push("Password PostgreSQL wajib ada di production (atur DATABASE_URL/POSTGRES_URL, atau POSTGRES_PASSWORD)");
       }
     }
   }
@@ -521,7 +521,7 @@ export function validateConfig(config) {
 
 const configErrors = validateConfig(botConfig);
 if (configErrors.length > 0) {
-  logger.error("Bot configuration errors:", configErrors.join("\n"));
+  logger.error("Error konfigurasi bot:", configErrors.join("\n"));
   if (process.env.NODE_ENV === "production") {
     process.exit(1);
   }
